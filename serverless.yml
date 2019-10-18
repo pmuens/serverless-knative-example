@@ -1,0 +1,15 @@
+service: knative-test
+
+provider:
+  name: knative
+  docker:
+    username: ${file(./docker-creds.json):username}
+    password: ${file(./docker-creds.json):password}
+
+functions:
+  helloWorld:
+    handler: hello-world.dockerfile
+    context: ./code
+
+plugins:
+  - serverless-knative
